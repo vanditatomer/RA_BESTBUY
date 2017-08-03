@@ -1,7 +1,7 @@
 node_modules
 mocks
 
-babelrc
+.babelrc
 .gitattributes
 gulpfile.js
 package-lock.json
