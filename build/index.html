@@ -1,0 +1,75 @@
+<html>
+    <head>
+    		<meta charset="utf-8">
+        <title>BestBuy API</title>
+        	<!-- MAIN CSS STYLESHEET -->
+        	<link rel="stylesheet" type="text/css" href="./css/main.css">
+        	<!-- FOTN AWESOME LINK -->
+        	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    </head>
+    <body>
+
+    	<!-- HEADER -->
+    	<header>
+    		<!-- ADD A BACKGROUND IN SCSS -->
+    		<div class="headerContent">
+
+				<div class="flex flex-center space-between flex-item-3 cart-nav"> 
+				
+					<button class="flex-right cart">
+						<i class=" fa fa-shopping-cart fa-3x" aria-hidden="true"></i>
+					</button>
+					<div class="cartnum" id="cart-total-hide">
+						<div class=" flex cart-num white-font main-font" id="cart-num">0 
+						</div>
+					</div>
+					<div class="flex flex-center total-price grey-font" id="price-total-hide"> &#36;
+						<div class="total-price">0</div>
+					</div>
+				</div>
+
+    			<h1>Welcome to Bestbuy store</h1>
+    			<h2>Shop here, for some reason</h2>
+    			<button>
+    				<p>Shop now</p>
+    			</button>
+    		</div>
+    		<!-- END OF .headerContent -->
+    	</header>
+    	<!-- END OF HEADER -->
+
+		<!-- MAIN SECTION -->
+    	<div class="mainInfo">
+    		<h3>We sell the same stuff as bestbuy, but we're 
+    			<span>better</span>
+    		</h3>
+    		<p>Loremd ipsum dolor sit amet, consectetur elit.</p>
+    	</div>
+    	<!-- END OF .mainInfo -->
+
+		<!-- PRODCUT CAROUSEL -->
+        <div id="productContainer" class="carouselContainer">
+			<ul id="productList" class="carouselList"></ul>
+        </div>
+
+		<!-- FOOTER -->
+		<footer>
+			<div class="footerHeading">
+				<h2>Sign up for updates</h2>
+				<h3>We will not stop emailing you</h3>
+
+				<div>
+					<input type="text" class="email" name="email" placeholder="Enter your email" />
+					<input type="submit" name="Sign up" value="SIGN UP" />
+				</div>
+				<!-- END OF EMAIL SIGN UP -->
+			</div>
+			<!-- END OF .footerHeading -->
+		</footer>
+		<!-- END OF FOOTER -->
+
+	<!-- javaScript & jQuery for NYT API -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/bundle.js"></script>
+    </body>
+</html>

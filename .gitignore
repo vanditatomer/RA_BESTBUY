@@ -1,0 +1,10 @@
+node_modules
+mocks
+
+babelrc
+.gitattributes
+gulpfile.js
+package-lock.json
+package.json
+project-3-requ.pdf
+README.md
