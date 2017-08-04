@@ -3,7 +3,7 @@
     		<meta charset="utf-8">
         <title>BestBuy API</title>
         	<!-- MAIN CSS STYLESHEET -->
-        	<link rel="stylesheet" type="text/css" href="./css/main.css">
+        	<link type="text/css" rel="stylesheet" href="./css/build.css" /
         	<!-- FOTN AWESOME LINK -->
         	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
@@ -14,27 +14,50 @@
     		<!-- ADD A BACKGROUND IN SCSS -->
     		<div class="headerContent">
 
-				<div class="flex flex-center space-between flex-item-3 cart-nav"> 
+				<div class="cartNav"> 
 				
-					<button class="flex-right cart">
-						<i class=" fa fa-shopping-cart fa-3x" aria-hidden="true"></i>
+					<button id="cart">
+						<i class="fa fa-shopping-cart fa-3x" aria-hidden="true"></i>
+
+						<div class="cart-desktop">
+							<h4 id="itemCount">0</h4>
+							<h4 id="itemPrice">0</h4>
+						</div>
 					</button>
-					<div class="cartnum" id="cart-total-hide">
-						<div class=" flex cart-num white-font main-font" id="cart-num">0 
+
+					<!-- POPUP MODAL -->
+					<div id="myModal" class="windowPopup">
+						<div class="modalContent">
+							<div class="modalHeader">
+								<span class="close">&times;</span>
+								<h2>Your Cart</h2>
+								<p>Total Items 
+									<span id = "cartTotalItems"></span>
+								</p>
+								<p>Cart Totals 
+									<span id = "totalItems"></span>
+								</p>
+							</div>
+							<div class="modalItems">
+								
+							</div>
 						</div>
 					</div>
-					<div class="flex flex-center total-price grey-font" id="price-total-hide"> &#36;
-						<div class="total-price">0</div>
-					</div>
-				</div>
+					<!-- END OF MODAL -->
 
-    			<h1>Welcome to Bestbuy store</h1>
-    			<h2>Shop here, for some reason</h2>
-    			<button>
-    				<p>Shop now</p>
-    			</button>
+				</div>
+				<!-- END OF CARTNAV -->
+
+				<section class="storeInfo">
+	    			<h1>Welcome to Bestbuy store</h1>
+	    			<h2>Shop here, for some reason</h2>
+	    			<button>
+	    				<p>Shop now</p>
+	    			</button>
+	    		</section>
+
     		</div>
-    		<!-- END OF .headerContent -->
+    		<!-- END OF HEADERCONTENT -->
     	</header>
     	<!-- END OF HEADER -->
 
@@ -45,12 +68,29 @@
     		</h3>
     		<p>Loremd ipsum dolor sit amet, consectetur elit.</p>
     	</div>
-    	<!-- END OF .mainInfo -->
+    	<!-- END OF MAININFO -->
 
-		<!-- PRODCUT CAROUSEL -->
-        <div id="productContainer" class="carouselContainer">
-			<ul id="productList" class="carouselList"></ul>
-        </div>
+		<!-- PRODUCT CAROUSEL -->
+		<section>
+			<div class="productMenu">
+        		<div>
+        			<p class="productItem">LAPTOPS</p>
+        		</div>
+        		<div>
+        			<p class="productItem">CELL PHONES</p>
+        		</div>
+        		<div>
+        			<p class="productItem">TELEVISION</p>
+        		</div>
+        		<div>
+        			<p class="productItem">HEADPHONES</p>
+        		</div>
+        	</div>
+
+	        <div id="productContainer" class="carouselContainer">
+				<ul id="productList" class="carouselList"></ul>
+	        </div>
+	    </section>
 
 		<!-- FOOTER -->
 		<footer>

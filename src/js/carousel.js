@@ -10,6 +10,7 @@ export const carousel = (result) => {
 		 	let productDescription = result.products[i].includedItemList[0].includedItem;
 			let productPrice = result.products[i].regularPrice;
 			let productSku = result.products[i].sku;
+			let popupContentHeading = "Your Cart";
 
 			// carouselLi IS CONTAINED INSIDE OF THE carouselList
 			let carouselLi = document.createElement('li');
@@ -43,9 +44,6 @@ export const carousel = (result) => {
 			buttonForCart.setAttribute('data-sku', ''+productSku+'');
 			buttonForCart.setAttribute('data-price', ''+productPrice+'');
 
-			//ADD TO CART - WORDS
-			let buttonAdd = document.createElement('p');
-			buttonForCart.appendChild(buttonAdd);
 		} //adding the div's end	
 
 		//WORKING WITH FLICKITY
