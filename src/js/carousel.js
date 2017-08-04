@@ -44,6 +44,8 @@ export const carousel = (result) => {
 			buttonForCart.setAttribute('data-sku', ''+productSku+'');
 			buttonForCart.setAttribute('data-price', ''+productPrice+'');
 
+
+
 		} //adding the div's end	
 
 		//WORKING WITH FLICKITY

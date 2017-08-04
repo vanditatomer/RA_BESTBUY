@@ -1,6 +1,6 @@
 /* The Modal (background) */
 .windowPopup {
-    display: none; /* Hidden by default */
+    //display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
@@ -13,12 +13,18 @@
 }
 
 /* Modal Content/Box */
-.wpContent {
+.modalContent {
+    position: relative;
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
+    margin: auto;
+    padding: 0;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
 }
 
 /* The Close Button */
@@ -36,21 +42,12 @@
     cursor: pointer;
 }
 
+.modalHeader {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
 
-
-// .windowPopup {
-//     display: none;
-//     padding-top: 6em;
-//     height: 100%;
-//     position: fixed, cover;
-//     z-index: 9999;
-//     text-align: center;
-//     background-color: rgba(0,0,0,0.5);
-// }
-
-// .wpContent {
-//     Padding: 1.5rem;
-//     margin: auto;
-//     width: 28em;
-//     background-color: white;
-// }
+.modalBody {
+    padding: 2px 16px;
+}

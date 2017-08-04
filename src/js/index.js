@@ -11,7 +11,7 @@ export default class App {
 
 	buttonListen()
 	{
-		$("#productContainer").on("click", ".addButton", (x) => {
+		$("#productContainer").on("click", ".addButton", (x) =>{
 			let product = new cart;
 			product.sku = $(x.target).data("sku");
 			product.price = $(x.target).data("price");
