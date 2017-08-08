@@ -128,7 +128,6 @@ var _class = function () {
 			if (item == null) {
 				this.cart.price = this.price;
 				this.cart.quantity = 1;
-				this.cart.cartTotal = this.cart.price * this.cart.quantity;
 			} else {
 				cartProduct = JSON.parse(item);
 
@@ -143,25 +142,126 @@ var _class = function () {
 			cartProduct = JSON.parse(item);
 
 			console.log(sessionStorage);
-			// console.log(sessionStorage.getItem(this.sku));
+			this.getTotalCartItems();
 			this.getTotalCartPrice();
 			this.buildCartHtml();
 			console.log("sku: " + this.sku + ", price: " + cartProduct.price + ", quantity: " + cartProduct.quantity + " Total Items: " + this.getTotalCartItems() + " Total Price: " + this.getTotalCartPrice());
+
+			var cartObj = null;
+			var productLine = "";
+			var lineDivide = "";
+			var getTotalCartItems = 0;
+
+			$('.modalItem').remove();
+
+			getTotalCartItems = sessionStorage.length;
+
+			if (getTotalCartItems > 0) {
+				for (var i = 0; i < getTotalCartItems; i++) {
+					this.sku = sessionStorage.key(i);
+
+					item = sessionStorage.getItem(this.sku);
+					cartObj = JSON.parse(item);
+
+					productLine = 'line' + (i + 1).toString();
+					lineDivide = productLine + '-hr';
+
+					if (i > 0) {
+						$('.modalBody').append('<hr id="' + lineDivide + '" class="modalItem">');
+					}
+
+					$('.modalBody').append('<div id="' + productLine + '" class="modalItem flex">' + '<div>SKU : ' + this.sku + '</div>' + '<div>QUANTITY : <input type="text" class="cartQuantity" maxlength="2" value="' + this.cart.quantity + '"></div>' + '<div>TOTAL : $<span>' + cartObj.total + '</span></div>' + '<div><button type="button" class="update-button" data-sku="' + this.sku + '">UPDATE</button>' + '<button type="button" class="remove-button" data-sku="' + this.sku + '">REMOVE</button></div>' + '</div>');
+				}
+			} else {
+				this.setEmptyCart();
+			}
 		}
+	}, {
+		key: "updateItemAmount",
+		value: function updateItemAmount() {
+			var productLine = $(this.x.target).parent().parent().attr("id");
+			var sku = $(this.x.target).data('sku');
+			var quantity = $(this.x.target).parent().parent().find("input").val();
 
-		//JAVASCRIPT DOES THIS AUTOMATICALLY - THIS WILL RETURN THE TOTAL NUMBER OF ITEMS IN THE CART
+			if (quantity == 0) {
+				this.removeCartItem();
+				return;
+			}
 
+			var item = sessionStorage.getItem(sku);
+
+			if (item != null) {
+				var cartObj = JSON.parse(item);
+
+				cartObj.quantity = quantity;
+				cartObj.total = cartObj.price * quantity;
+
+				$('#' + productLine).find("span").text(cartObj.total);
+
+				item = JSON.stringify(cartObj);
+				sessionStorage.setItem(sku, item);
+			}
+
+			this.setItemCount();
+			this.setCartTotal();
+
+			alert("Quantity updated");
+		}
+	}, {
+		key: "removeCartItem",
+		value: function removeCartItem() {
+			var productLine = $(this.x.target).parent().parent().attr("id");
+			var sku = $(this.x.target).data('sku');
+
+			if (response != true) {
+				return;
+			}
+
+			sessionStorage.removeItem(sku);
+
+			var lineDivide = null;
+
+			lineDivide = $(this.x.target).parent().parent().prev().attr("id");
+			if (!lineDivide) {
+				lineDivide = $(this.x.target).parent().parent().next().attr("id");
+			}
+
+			$('#' + productLine).remove();
+
+			if (lineDivide) {
+				$('#' + lineDivide).remove();
+			}
+
+			if (sessionStorage.length == 0) {
+				this.setEmptyCart();
+			}
+
+			this.setItemCount();
+			this.setCartTotal();
+
+			alert("Item removed from cart");
+		}
+	}, {
+		key: "setItemCount",
+		value: function setItemCount() {
+			var x = document.getElementById("itemCount");
+			var itemCount = sessionStorage.length;
+
+			if (itemCount > 0) {
+				if (x.style.display != "block") {
+					x.style.display = "block";
+				}
+
+				x.textContent = itemCount.toString();
+			} else {
+				x.style.display = "none";
+			}
+		}
 	}, {
 		key: "getTotalCartItems",
 		value: function getTotalCartItems() {
 			return sessionStorage.length;
 		}
-
-		// let x = {
-		// 	key : {price:50,qnt:4}
-		// }
-		// x.1000056;
-
 	}, {
 		key: "getTotalCartPrice",
 		value: function getTotalCartPrice() {
@@ -170,14 +270,10 @@ var _class = function () {
 			for (var key in sessionStorage) {
 				var x = JSON.parse(sessionStorage[key]);
 				totalQuantity = totalQuantity + x.quantity;
-
-				//let y = JSON.parse(sessionStorage[key]);
 				priceTotal += x.price * x.quantity;
 
-				//let totalPrice = (price * );
 				document.getElementById('itemCount').innerHTML = totalQuantity;
 				document.getElementById('itemPrice').innerHTML = priceTotal;
-				//document.getElementById('itemPrice').innerHTML = cartTotal;
 			}
 			return priceTotal;
 		}
@@ -189,6 +285,77 @@ var _class = function () {
 				itemCount.style.display = "block";
 			}
 			itemCount.innerHTML = this.getTotalCartItems();
+
+			//Get the modal
+			var modal = document.getElementById('myModal');
+
+			// Get the button that opens the modal
+			var btn = document.getElementById("cart");
+
+			// Get the <span> element that closes the modal
+			var span = document.getElementsByClassName("close")[0];
+
+			// When the user clicks on the button, open the modal 
+			btn.onclick = function () {
+				modal.style.display = "block";
+			};
+
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function () {
+				modal.style.display = "none";
+			};
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function (event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			};
+		}
+	}, {
+		key: "setCartTotal",
+		value: function setCartTotal() {
+			var skuKey = "";
+			var item = null;
+			var cartObj = null;
+			var totalItems = 0;
+			var totalAmount = 0;
+
+			$('#cart-total').remove();
+
+			totalItems = sessionStorage.length;
+
+			for (var i = 0; i < totalItems; i++) {
+				skuKey = sessionStorage.key(i);
+
+				item = sessionStorage.getItem(skuKey);
+				cartObj = JSON.parse(item);
+
+				totalAmount += cartObj.total;
+			}
+
+			$('.modalHeader').append('<div id="cart-total" class="modalItem">' + '<p>YOUR ITEMS : <span>' + totalItems + '</span> | ' + 'CART TOTAL : <span>$' + totalAmount.toFixed(2) + '</span></p>' + '</div>');
+		}
+	}, {
+		key: "setEmptyCart",
+		value: function setEmptyCart() {
+			$('.modalBody').append('<p class="modalItem">YOUR CART IS EMPTY.</p>');
+		}
+	}, {
+		key: "quantityValidation",
+		value: function quantityValidation() {
+			var keyCode = this.x.keyCode;
+			var ctrlCode = this.x.ctrlCode;
+			var metaKey = this.x.metaKey;
+			var shiftKey = this.x.shiftKey;
+
+			if ($.inArray(keyCode, [46, 8, 9, 27, 13, 110]) !== -1 || keyCode == 65 && (ctrlKey === true || metaKey === true) || keyCode == 67 && (ctrlKey === true || metaKey === true) || keyCode == 88 && (ctrlKey === true || metaKey === true) || keyCode >= 35 && keyCode <= 39) {
+				return;
+			}
+
+			if ((shiftKey || keyCode < 48 || keyCode > 57) && (keyCode < 96 || keyCode > 105)) {
+				this.x.preventDefault();
+			}
 		}
 	}]);
 

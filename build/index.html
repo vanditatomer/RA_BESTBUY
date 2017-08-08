@@ -1,10 +1,11 @@
+<!DOCTYPE html>
 <html>
     <head>
     		<meta charset="utf-8">
         <title>BestBuy API</title>
         	<!-- MAIN CSS STYLESHEET -->
-        	<link type="text/css" rel="stylesheet" href="./css/build.css" /
-        	<!-- FOTN AWESOME LINK -->
+        	<link type="text/css" rel="stylesheet" href="./css/build.css" />
+        	<!-- FONT AWESOME LINK -->
         	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
     <body>
@@ -17,34 +18,24 @@
 				<div class="cartNav"> 
 				
 					<button id="cart">
-						<i class="fa fa-shopping-cart fa-3x" aria-hidden="true"></i>
-
-						<div class="cart-desktop">
+						<div class="cartIcon">
 							<h4 id="itemCount">0</h4>
 							<h4 id="itemPrice">0</h4>
 						</div>
 					</button>
 
 					<!-- POPUP MODAL -->
-					<div id="myModal" class="windowPopup">
+					<section id="myModal" class="windowPopup">
 						<div class="modalContent">
 							<div class="modalHeader">
 								<span class="close">&times;</span>
 								<h2>Your Cart</h2>
-								<div class="modalBody">
-									<p>Total Items 
-										<span id = "cartTotalItems"></span>
-									</p>
-									<p>Cart Totals 
-										<span id = "totalItems"></span>
-									</p>
-								</div>
+								<div id="modalBodyId" class="modalBody"></div>
 							</div>
-							<div class="modalItems">
-								
-							</div>
+							<div class="modalItems"></div>
+							<div class="modal-footer"></div>
 						</div>
-					</div>
+					</section>
 					<!-- END OF MODAL -->
 
 				</div>
@@ -68,7 +59,7 @@
     		<h3>We sell the same stuff as bestbuy, but we're 
     			<span>better</span>
     		</h3>
-    		<p>Loremd ipsum dolor sit amet, consectetur elit.</p>
+    		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sem ipsum, fringilla in varius eget, interdum eu metus. Suspendisse metus leo, laoreet vitae ullamcorper nec, ornare a eros. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum sed mi sodales, congue est scelerisque, ullamcorper ipsum. Fusce euismod, ante quis bibendum bibendum, neque enim fermentum dui, cursus suscipit nulla felis id lacus. Phasellus consequat at erat quis eleifend. Nam urna est, imperdiet sed elementum vestibulum, efficitur vel eros.</p>
     	</div>
     	<!-- END OF MAININFO -->
 

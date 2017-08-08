@@ -1,8 +1,54 @@
+#cartTotal {
+    padding: 1.5rem 0 1rem 0;
+}
+
+#cartTotal p span {
+    color: green;
+}
+
+.cartIcon {
+    height: 5rem;
+    width: 5rem;
+    background: url("../images/cart-icon.svg") no-repeat center bottom;
+    background-size: cover;
+}
+
+.circle-desktop {
+    height: 1.75rem;
+    width: 1.75rem;
+    border-radius: 50%;
+    font-size: 18px;
+    color: white;
+    line-height: 1.75rem;
+    text-align: center;
+    background: red;
+}
+
+.hidden-desktop {
+    display: none;
+}   
+
+.productMenu {
+    width: 100%;
+    background-color: #2d8655;
+    color: white;
+    opacity: 0.7;
+}
+
+.productMenu p:hover {
+    color: black;
+}
+
+.productItem {
+    padding: 2rem 2rem 2rem 2rem;
+}
+
 /* The Modal (background) */
 .windowPopup {
-    //display: none; /* Hidden by default */
+    display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -12,7 +58,7 @@
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-/* Modal Content/Box */
+/* Modal Content */
 .modalContent {
     position: relative;
     background-color: #fefefe;
@@ -27,27 +73,90 @@
     animation-duration: 0.4s
 }
 
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
 /* The Close Button */
 .close {
-    color: #aaa;
+    /*color: white;*/
     float: right;
-    font-size: 28px;
+    /*font-size: 28px;*/
+    font-size: 2rem;
     font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
+    /*color: #000;*/
+    color: grey;
     text-decoration: none;
     cursor: pointer;
 }
 
 .modalHeader {
-    padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
+    padding: 1rem 2rem 1rem 2rem;
+}
+
+.modalHeader h2 {
+    font-size: 2rem;
 }
 
 .modalBody {
+    padding: 1rem 2rem 3rem 2rem;
+}
+
+.modalItem {
+    width: 100%;
+    word-spacing: 10px;
+}
+
+.modalItem div {
+    width: 25%;
+    line-height: 2rem;
+}
+
+.modal-total {
+    width: 100%;
+}
+
+.modal-total div {
+    width: 25%;
+    line-height: 2rem;
+}
+
+.modal-footer {
     padding: 2px 16px;
+    background-color: #5cb85c;
+}
+
+.update-button {
+    border-radius: 100px 0 0 100px;
+    background-color: green;
+    color: white;
+    font-size: 1rem;
+    padding: 0.25rem 1rem 0.25rem 2rem;
+}
+
+.remove-button {
+    border-radius: 0 100px 100px 0;
+    background-color: red;
+    color: white;
+    font-size: 1rem;
+    padding: 0.25rem 2rem 0.25rem 1rem;
+}
+
+.cart-quantity {
+    border-radius: 10px;
+    font-size: 1rem;
+    width: 20%;
+    padding: 0.25rem 0 0.25rem 0;
+    text-align: center;
 }
